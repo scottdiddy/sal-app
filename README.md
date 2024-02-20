@@ -4,12 +4,10 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
 ## Todo:
 * Create Product and Merchant models. Merchant models will have the Merchant id and all the associated SKU id. That is a merchant and all his/her products.
 * Initialize middlewares:
-  - Header Validator - checks the supplied merchant id.
-  - Body Validator - checks the incoming request body.
+  - Body Validator - checks the incoming request body and ensuresn certain fields are present.
 * Define controllers for each routes:
-  - Add product by merchant.
-  - Display all products listed by a merchant.
   - Create a product.
+  - Display all products listed by a merchant.
   - Edit a product.
   - Delete an existing product.
 * Similarly define all services for each routes that performs the actual work.
