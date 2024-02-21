@@ -9,17 +9,19 @@ import (
 )
 
 func CreateNewProduct(newProduct *models.Product, merchantID string) error {
-	newProduct.DateAdded = time.Now()
-	newProduct.DateUpdated = time.Now()
-
-	//if the product already exists, return 
+	//if the product already exists, return error
 	if _, exists := repository.ProductData[newProduct.SKUID]; exists  {
 		return errors.New("product already exists")
 	}
-	//else save the product itself to the product data structure using it's skuid as key
+
+	//else add the time the product was created and save the product
+	//itself to the product data structure using it's skuid as key
+	newProduct.DateAdded = time.Now()
+	newProduct.DateUpdated = time.Now()
 	repository.ProductData[newProduct.SKUID] = *newProduct
 
 	//saves the product's skuid to the string of skuids of the merchant
 	repository.MerchantData[merchantID]= append(repository.MerchantData[merchantID], newProduct.SKUID)
+
 	return nil
 }

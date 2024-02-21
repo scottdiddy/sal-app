@@ -6,6 +6,6 @@ import (
 )
 
 func validateSKUID(f1 validator.FieldLevel) bool {
-	_, exists := repository.MerchantData[f1.Field().String()]
+	_, exists := repository.ProductData[f1.Field().String()]
 	return exists
 }

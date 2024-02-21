@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/scottdiddy/sal-app/src/repository"
 	"github.com/scottdiddy/sal-app/src/services"
@@ -9,7 +10,7 @@ import (
 
 func DeleteProduct(c *fiber.Ctx) error {
 	//gets the merchantID from the header
-	merchantID := c.Params("merchantID")
+	merchantID := fmt.Sprint(c.Params("merchantID"))
 	
 	//Checks if the merchantID is empty or if the merchant exists
 	_, merchantExists := repository.MerchantData[merchantID]
@@ -19,7 +20,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	}
 
 	//gets the skuid of the product to be delete from the header
-	skuidToDelete := c.Query("sku_id")
+	skuidToDelete := fmt.Sprint(c.Query("sku_id"))
 
 	//checks if the skuid is empty
 	if (skuidToDelete == ""){

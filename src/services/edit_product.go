@@ -10,18 +10,18 @@ import (
 )
 
 func EditProduct(updateFields *models.UpdateProductDTO, merchantProductSkuids []string) (models.Product, error) {
-	productExists := false
+	productMatch := false
 
 	//Checks if the supplied skuid matches the any skuid of the merchant's products
 	for _, skuid := range merchantProductSkuids {
 		if skuid == updateFields.SKUID {
-			productExists = true
+			productMatch = true
 			break
 		}
 	}
 
-	//if product exists, get the product and update the product's fields
-	if productExists {
+	//if product matches, get the product and update the product's fields
+	if productMatch {
 		productToUpdate := repository.ProductData[updateFields.SKUID]
 		utils.UpdateStructFields(productToUpdate.ProductDTO, updateFields)
 		productToUpdate.DateUpdated = time.Now()
@@ -29,6 +29,6 @@ func EditProduct(updateFields *models.UpdateProductDTO, merchantProductSkuids []
 		return productToUpdate, nil
 	}
 
-	//if product does not exist, throw error
+	//if product does not match, throw error
 	return models.Product{}, errors.New("supplied skuid does not match skuid of merchant's product")
 }

@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/scottdiddy/sal-app/src/constants"
-	"github.com/scottdiddy/sal-app/src/repository"
 	"github.com/scottdiddy/sal-app/src/models"
+	"github.com/scottdiddy/sal-app/src/repository"
 	"github.com/scottdiddy/sal-app/src/services"
 	"github.com/scottdiddy/sal-app/src/utils"
 )
@@ -14,7 +16,7 @@ func EditProduct(c *fiber.Ctx) error {
 	updateFields, _ := c.Locals(constants.EDIT_PRODUCT_ROUTE).(*models.UpdateProductDTO)
 	
 	//gets the merchantID from the header
-	merchantID := c.Params("merchantID")
+	merchantID := fmt.Sprint(c.Params("merchantID"))
 
 	//Checks if the merchantID is empty or if the merchant exists
 	merchantProductSkuids, merchantExists := repository.MerchantData[merchantID]
