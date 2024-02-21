@@ -13,14 +13,19 @@ func CreateProduct(c *fiber.Ctx) error {
 	newProduct, _ := c.Locals(constants.CREATE_PRODUCT_ROUTE).(*models.Product)
 	
 	//gets the merchantID from the header
-	merchantID := c.Params("merchantID") 
+	merchantID := c.Params("merchantID")
 
 	//checks if the merchantId is empty
-	if merchantID == "" {
+	if merchantID == ":merchantID" {
 		msg := utils.ResponseMessage("No merchant ID provided", nil)
 		return c.Status(404).JSON(msg)
 	}
-	services.CreateNewProduct(newProduct, merchantID)
+	err := services.CreateNewProduct(newProduct, merchantID)
+	if err != nil {
+		msg := utils.ResponseMessage(err.Error(), nil)
+		return c.Status(404).JSON(msg)
+	}
+
 	msg := utils.ResponseMessage("Successfully created product", nil)
 	return c.Status(200).JSON(msg)
 

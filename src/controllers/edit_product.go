@@ -13,11 +13,12 @@ func EditProduct(c *fiber.Ctx) error {
 	//gets the updateFields saved in the context
 	updateFields, _ := c.Locals(constants.EDIT_PRODUCT_ROUTE).(*models.UpdateProductDTO)
 	
+	//gets the merchantID from the header
 	merchantID := c.Params("merchantID")
 
 	//Checks if the merchantID is empty or if the merchant exists
 	merchantProductSkuids, merchantExists := repository.MerchantData[merchantID]
-	if (merchantID == "") || ( !merchantExists ) {
+	if (merchantID == ":merchantID") || ( !merchantExists ) {
 		msg := utils.ResponseMessage("No merchant ID provided or Merchant does not exist", nil)
 		return c.Status(400).JSON(msg)
 	}

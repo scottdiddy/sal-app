@@ -13,7 +13,7 @@ func DeleteProduct(c *fiber.Ctx) error {
 	
 	//Checks if the merchantID is empty or if the merchant exists
 	_, merchantExists := repository.MerchantData[merchantID]
-	if (merchantID == "") || ( !merchantExists ) {
+	if (merchantID == ":merchantID") || ( !merchantExists ) {
 		msg := utils.ResponseMessage("No merchant ID provided or Merchant does not exist", nil)
 		return c.Status(400).JSON(msg)
 	}

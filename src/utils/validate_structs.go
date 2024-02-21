@@ -14,7 +14,7 @@ func ValidateStructBody(reqBody interface{}) error {
 		validationError, ok := err.(validator.ValidationErrors)
 		if ok {
 			for _, err := range validationError {
-				msg := "Field " + err.Field() + "failed on the " + err.Tag() + "tag."
+				msg := "Field " + err.Field() + " failed on the " + err.Tag() + " tag."
 				return errors.New(msg)
 			}
 		} else {
