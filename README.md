@@ -5,8 +5,8 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
 * **Architecture:** Due to the nature of the application (monolithic), **Layered Architecture** was used.
 * **Why Layered Architecture?** Layered Architecture was chosen for its clear seperation of concerns which enhances maintainability, scalability, and reusability of components within the system.
 * **Benefits:**
-  - ase of
   - Modularity: Allows for separation of concerns into distinct layers, such as presentation, business logic, and data access, facilitating easier understanding and maintenance of the system as changes in one layer are less likely to affect another layer.
+  - Ease of Use: The basic concept of layered architecture is relatively straightforward.
   - Scalability: Scalability is improved as individual layers can be scaled independently, allowing for better performance optimization.
   - Reusability: Resuable components can be organized into specific layers and will be declared open that is accessible to all other layers.
   - Testability: Each layer can be tested independently, making it easier to write unit tests and ensure the reliability of the system.
