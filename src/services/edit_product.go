@@ -9,10 +9,15 @@ import (
 	"github.com/scottdiddy/sal-app/src/utils"
 )
 
-func EditProduct(updateFields *models.UpdateProductDTO, merchantProductSkuids []string) (models.Product, error) {
-	productMatch := false
+func EditProduct(merchantID string, updateFields *models.UpdateProductDTO) (models.Product, error) {
+	//Checks if the merchantID is empty or if the merchant exists
+	merchantProductSkuids, merchantExists := repository.MerchantData[merchantID]
+	if (merchantID == ":merchantID") || ( !merchantExists ) {
+		return models.Product{}, errors.New("no merchant ID provided or Merchant does not exist")
+	}
 
 	//Checks if the supplied skuid matches the any skuid of the merchant's products
+	productMatch := false
 	for _, skuid := range merchantProductSkuids {
 		if skuid == updateFields.SKUID {
 			productMatch = true

@@ -6,6 +6,12 @@ import (
 )
 
 func DeleteProduct(merchantID string, skuidToDelete string) error {
+	//Checks if the merchantID is empty or if the merchant exists
+	_, merchantExists := repository.MerchantData[merchantID]
+	if (merchantID == ":merchantID") || ( !merchantExists ) {
+		return errors.New("no merchant ID provided or Merchant does not exist")
+	}
+
 	//get all skuids of the products of the merchant
 	merchantProductSkuids := repository.MerchantData[merchantID]
 
