@@ -4,7 +4,6 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
 ## API Documentation:
 * Click [here](https://documenter.getpostman.com/view/29097143/2sA2rCVNHm) to view the documentation for this API on Postman
 
-
 ## How to run:
 * Open git bash and navigate to your preferred directory
 * Run `git clone git@github.com:scottdiddy/sal-app.git`
@@ -21,9 +20,7 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
   - Scalability: Scalability is improved as individual layers can be scaled independently, allowing for better performance optimization.
   - Reusability: Resuable components can be organized into specific layers and will be declared open that is accessible to all other layers.
   - Testability: Each layer can be tested independently, making it easier to write unit tests and ensure the reliability of the system.
-
-![Layered Architecture Sal-App](<img\Layered Architecture Sal-App.png>)
-
+<img width="1809" alt="Layered Architecture Sal-App" src="https://github.com/scottdiddy/sal-app/assets/141838693/163009fc-4a3c-448e-b397-729195c7476e">
 
 ## Database Implementation:
 * **ERD Design:**
@@ -44,5 +41,4 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
      3) Performance: To enhance performance (speed and dependability), choosing a database with efficient query processing capabilities and robust indexing features is crucial.
      4) Cost: Depending on budget constraints, open-source options like PostgreSQL might be preferred over proprietary solutions.
 
-
-![ERD-Sal-App](<img\ERD-Sal-App.png>)
+![ERD-Sal-App](https://github.com/scottdiddy/sal-app/assets/141838693/6b5812fa-0f03-47dd-980b-88d26c1be4b2)
