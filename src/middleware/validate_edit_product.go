@@ -13,15 +13,14 @@ func ValidateEditProductDetails(c *fiber.Ctx) error {
 	var updateFields models.UpdateProductDTO
 	err := c.BodyParser(&updateFields)
 	if err != nil {
-		msg := utils.ResponseMessage(fmt.Sprintf("Error parsing request body, %s", err.Error()), nil)
+		msg := utils.ResponseMessage(false, fmt.Sprintf("Error parsing request body, %s", err.Error()), nil)
 		return c.Status(400).JSON(msg)
 	}
 	err = utils.ValidateStructBody(&updateFields)
 	if err != nil {
-		msg := utils.ResponseMessage(err.Error(), nil)
+		msg := utils.ResponseMessage(false, err.Error(), nil)
 		return c.Status(400).JSON(msg)
 	}
 	c.Locals(constants.EDIT_PRODUCT_ROUTE, &updateFields)
 	return c.Next()
-
 }

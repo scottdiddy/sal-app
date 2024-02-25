@@ -20,7 +20,7 @@ func CreateNewProduct(newProduct *models.Product, merchantID string) error {
 	newProduct.DateUpdated = time.Now()
 	repository.ProductData[newProduct.SKUID] = *newProduct
 
-	//saves the product's skuid to the string of skuids of the merchant
+	//also save the product's skuid to the string of skuids of the merchant
 	repository.MerchantData[merchantID]= append(repository.MerchantData[merchantID], newProduct.SKUID)
 
 	return nil

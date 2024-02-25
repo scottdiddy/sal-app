@@ -10,10 +10,9 @@ import (
 )
 
 func EditProduct(merchantID string, updateFields *models.UpdateProductDTO) (models.Product, error) {
-	//Checks if the merchantID is empty or if the merchant exists
-	merchantProductSkuids, merchantExists := repository.MerchantData[merchantID]
-	if (merchantID == ":merchantID") || ( !merchantExists ) {
-		return models.Product{}, errors.New("no merchant ID provided or Merchant does not exist")
+	merchantProductSkuids, err := utils.CheckMerchant(merchantID)
+	if err != nil {
+		return models.Product{}, err
 	}
 
 	//Checks if the supplied skuid matches the any skuid of the merchant's products

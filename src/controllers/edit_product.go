@@ -17,13 +17,12 @@ func EditProduct(c *fiber.Ctx) error {
 	//gets the merchantID from the header
 	merchantID := fmt.Sprint(c.Params("merchantID"))
 
-	
 	updatedProduct, err := services.EditProduct(merchantID, updateFields)
 	if err != nil {
-		msg := utils.ResponseMessage(err.Error(), nil)
+		msg := utils.ResponseMessage(false, err.Error(), nil)
 		return c.Status(400).JSON(msg)
 	}
-	msg := utils.ResponseMessage("Successfully updated product", updatedProduct)
+	msg := utils.ResponseMessage(true, "Successfully updated product", updatedProduct)
 	return c.Status(200).JSON(msg)
 
 }

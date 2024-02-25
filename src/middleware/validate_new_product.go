@@ -13,12 +13,12 @@ func ValidateNewProduct(c *fiber.Ctx) error {
 	var reqBody models.ProductDTO
 	err := c.BodyParser(&reqBody)
 	if err != nil {
-		msg := utils.ResponseMessage(fmt.Sprintf("Error parsing request body, %s", err.Error()), nil)
+		msg := utils.ResponseMessage(false, fmt.Sprintf("Error parsing request body, %s", err.Error()), nil)
 		return c.Status(400).JSON(msg)
 	}
 	err = utils.ValidateStructBody(&reqBody)
 	if err != nil {
-		msg := utils.ResponseMessage(err.Error(), nil)
+		msg := utils.ResponseMessage(false, err.Error(), nil)
 		return c.Status(400).JSON(msg)
 	}
 	newProduct := models.Product{

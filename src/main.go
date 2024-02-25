@@ -11,15 +11,15 @@ func main() {
 	app := fiber.New()
 	app.Use(logger.New())
 
-	apiGroup := app.Group("/api")
-	
-	middleware.RegisterRoutes(apiGroup)
-	controllers.RegisterRoutes(apiGroup)
+	appGroup := app.Group("/api/product")
 
-	app.Use(func (c *fiber.Ctx) error  {
+	middleware.RegisterRoutes(appGroup)
+	controllers.RegisterRoutes(appGroup)
+
+	app.Use(func(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{
-			"Message": "Not found",
-		})		
+			"Message": "Url not found",
+		})
 	})
 	app.Listen(":3001")
 

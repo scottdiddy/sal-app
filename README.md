@@ -1,5 +1,16 @@
 # Sal-app
-Shop Anything Lagos (SAL) is a SAAS company that lists products from different merchants. Sal-app implements SAL using REST APIs and basic CRUD operations and an inbuilt data structure. 
+Shop Anything Lagos (SAL) is a SAAS company that lists products from different merchants. Sal-app implements SAL using REST APIs, basic CRUD operations and an inbuilt data structure. 
+
+## API Documentation:
+* Click [here](https://documenter.getpostman.com/view/29097143/2sA2rCVNHm) to view the documentation for this API on Postman
+
+
+## How to run:
+* Open git bash and navigate to your preferred directory
+* Run `git clone git@github.com:scottdiddy/sal-app.git`
+* Open the cloned repo in vscode
+* Run `go mod tidy` in your terminal
+* Now you can run the code using `go run src/main.go`
 
 ## Description:
 * **Architecture:** Due to the nature of the application (monolithic), **Layered Architecture** was used.
@@ -10,23 +21,28 @@ Shop Anything Lagos (SAL) is a SAAS company that lists products from different m
   - Scalability: Scalability is improved as individual layers can be scaled independently, allowing for better performance optimization.
   - Reusability: Resuable components can be organized into specific layers and will be declared open that is accessible to all other layers.
   - Testability: Each layer can be tested independently, making it easier to write unit tests and ensure the reliability of the system.
-<img width="1809" alt="Layered Architecture Sal-App" src="https://github.com/scottdiddy/sal-app/assets/141838693/8ce8a4a4-200c-433e-85d8-f88f25e5046f">
 
-## Todo:
-* Create Product and Merchant models. Merchant models will have the Merchant id and all the associated SKU id. That is a merchant and all his/her products.
-* Initialize middlewares:
-  - Body Validator - checks the incoming request body and ensuresn certain fields are present.
-* Define controllers for each routes:
-  - Create a product.
-  - Display all products listed by a merchant.
-  - Edit a product.
-  - Delete an existing product.
-* Similarly define all services for each routes that performs the actual work.
+![Layered Architecture Sal-App](<img\Layered Architecture Sal-App.png>)
 
-## Usage:
-* Open git bash and navigate to your preferred directory
-* Run git clone git@github.com:scottdiddy/sal-app.git
-* Open the clone repo in vscode and open your terminal
-* Run go mod tidy
-* cd into src
-* Now you can run the code using go run main.go
+
+## Database Implementation:
+* **ERD Design:**
+  - Relationship: As shown in the ERD, the database would be implemented as a one to many relationship (mandatory one to mandatory many) between the two entities - Merchant and Products. One to many because a merchant can have different products but a product can have only one merchant. And also it is mandatory because a product must have at least one merchant and a merchant must have at least one product.
+* **Justification for ERD Design:**
+  - This ERD utilizes two tables, Merchant and Product, with a one-to-many relationship between them. This is suitable for efficient data storage and retrieval, especially when dealing with a large number of merchants and products.
+  - The merchant_id in the Product table acts as a foreign key referencing the primary key of the Merchant table, ensuring data integrity and enabling efficient retrieval of products associated with a specific merchant.
+
+* **Considerations for Performance for Large Data:**
+  - Indexing: Depending on the queries performed frequently, additional indexes may be added on those columns to optimize query performance.
+  - Partitioning: Also partitioning the Product table based on the merchant_id or other relevant criteria can optimize performance by focusing queries on specific subsets of data.
+  - Caching: Implementing caching mechanisms can reduce database load by serving frequently accessed data from memory.
+ * **Choice of Database:**
+   - Type: An SQL database like PostgreSQL is recommended.
+   - **Why PostgreSQL?**
+     1) Data Involved: PostgreSQL is recommended considering that the data involved is structured and can be arranged efficiently into tables with rows and columns. 
+     2) Scalability: Since the platform anticipates significant growth in the number of merchants and products, a highly scalable database like PostgreSQL is best.
+     3) Performance: To enhance performance (speed and dependability), choosing a database with efficient query processing capabilities and robust indexing features is crucial.
+     4) Cost: Depending on budget constraints, open-source options like PostgreSQL might be preferred over proprietary solutions.
+
+
+![ERD-Sal-App](<img\ERD-Sal-App.png>)

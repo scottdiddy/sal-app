@@ -16,20 +16,18 @@ func DeleteProduct(c *fiber.Ctx) error {
 
 	//checks if the skuid is empty
 	if (skuidToDelete == ""){
-		msg := utils.ResponseMessage("No product sku_id provided", nil)
+		msg := utils.ResponseMessage(false, "No product sku_id provided", nil)
 		return c.Status(400).JSON(msg)
 	}
 	
 	err := services.DeleteProduct(merchantID, skuidToDelete)
 	if err != nil {
-		msg := utils.ResponseMessage(err.Error(), nil)
+		msg := utils.ResponseMessage(false, err.Error(), nil)
 		return c.Status(400).JSON(msg)
 	}
 	
-	msg := utils.ResponseMessage("Successfully deleted product", fiber.Map{
-		"SKUID": skuidToDelete,
+	msg := utils.ResponseMessage(true, "Successfully deleted product", fiber.Map{
+		"sku_id": skuidToDelete,
 	})
-	return c.Status(400).JSON(msg)
-
-
+	return c.Status(200).JSON(msg)
 }

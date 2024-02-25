@@ -5,7 +5,7 @@ import (
 	"github.com/scottdiddy/sal-app/src/constants"
 )
 
-func RegisterRoutes(apiGroup fiber.Router) {
-	apiGroup.Post(constants.CREATE_PRODUCT_ROUTE, ValidateNewProduct)
-	apiGroup.Patch(constants.EDIT_PRODUCT_ROUTE, ValidateEditProductDetails)
+func RegisterRoutes(appGroup fiber.Router) {
+	appGroup.Post(constants.CREATE_PRODUCT_ROUTE, ValidateNewProduct)
+	appGroup.Patch(constants.EDIT_PRODUCT_ROUTE, ValidateEditProductDetails)
 }
